@@ -1,0 +1,66 @@
+
+\subsection{Algoritmos de ordenamiento}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{../code/sorting/data/plots/tiempo_vs_n.png}
+	\caption{Tiempo de ejecución promedio vs tamaño de entrada $n$.}
+	\label{fig:sorting_tiempo_vs_n}
+\end{figure}
+
+En la Figura-1 se aprecia que los cuatro algoritmos presentan un tiempo de ejecución promedio apenas diferenciable con $10^1 < n < 10^5$. Esto coincide con la complejidad teórica $\mathcal{O}(n \log(n))$. En tamaños de entrada superiores se puede ver mayor diferencia en los resultados, siendo el mergesort y el patiencesort los que entregan mayores tiempos de ejecución en promedio.
+
+Los resultados también muestran la nula diferencia entre los tiempos de ejecución de \textit{Mergesort} y \textit{Patience Sort}. Se puede concluir, el costo constante de inserciones y extracciones en las pilas resulta similar al costo de mezclar subarreglos que asume \textit{Mergesort}, traduciéndose en curvas de tiempo prácticamente superpuestas para tamaños de entrada superiores a $10^5$.
+
+En caso de \textit{Quicksort} se logra ver una notable mejora, logrando superar apenas los 250 ms como promedio en el mayor tamaño de entrada. Luego para \textit{Sort}, se sabe que implementa varios tipos de algoritmos de ordenamiento, adaptandose a los tamaños de n y cantidad de llamadas recursivas, por lo cual se le atribuye los mejores tiempo de ejecución promedio.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{../code/sorting/data/plots/tiempo_tipo_por_dominio.png}
+	\caption{Tiempo de ejecución promedio vs dominio y tipo de entrada.}
+	\label{fig:sorting_tiempo_vs_dominio_tipo}
+\end{figure}
+
+
+En la Figura-2 se ve que los arreglos aleatorios presentan el mayor tiempo para todos los algoritmos, siendo
+\textit{Mergesort} el más afectado con aproximadamente 680 ms. Los arreglos ascendentes y descendentes
+resultan más rápidos. Es esperable que \textit{Quicksort} no se viera afectado gracias a su implementación para elegir el pivote con la mediana de 3 elementos, y \textit{sort} aplica optimizaciones adicionales para entradas parcialmente ordenadas.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{../code/sorting/data/plots/memoria_vs_n.png}
+	\caption{Uso de memoria promedio vs tamaño de entrada $n$.}
+	\label{fig:sorting_memoria_vs_n}
+\end{figure}
+
+
+
+En la Figura~3 se observa que para $n = 10^7$ el consumo de memoria alcanza casi los $40\,000\text{ KB}$ ($\approx 39$ MB) para todos los algoritmos evaluados. Esta solicitud visual se explica porque el tamaño base del conjunto de datos de entrada ($10^7$ enteros de 4 bytes) establece un piso de memoria dominante que opaca las diferencias en memoria auxiliar. Sin embargo, para $n = 10^5$, se evidencia el costo espacial de \textit{Patiencesort} y \textit{Mergesort}, los cuales requieren estructuras temporales de orden $\mathcal{O}(n)$ para almacenar las pilas y realizar las fusiones, a diferencia del comportamiento \textit{in-place} de \textit{Quicksort} y \textit{sort} ($\mathcal{O}(\log n)$).
+
+\subsection{Algoritmos de multiplicación de matrices}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{../code/matrix_multiplication/data/plots/tiempo_vs_n.png}
+	\caption{Tiempo de ejecución promedio vs tamaño de entrada $n$.}
+	\label{fig:matrix_tiempo_vs_n}
+\end{figure}
+
+
+Según las complejidades teóricas de casa algoritmo ($\mathcal{O}(n^3) \text{vs} \mathcal{O}(n^{2,81})$), \textit{Strassen}, deberia entregar mejor resultados en termino de tiempo, pero estas se alejan notablemente de los resultados experimentales a medida que va aumentando el tamaño de la entrada. 
+Este comportamiento se explica por el overhead de memoria que introduce la implemen-
+tación: en cada nivel de recursión se crean y copian hasta 18 submatrices temporales, lo que domina so-
+bre la reducción teórica en el número de multiplicaciones.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{../code/matrix_multiplication/data/plots/memoria_vs_n.png}
+	\caption{Uso de memoria promedio vs tamaño de entrada $n$.}
+	\label{fig:matrix_memoria_vs_n}
+\end{figure}
+
+Rescatando el parrafo anterior, en la Figura-5 se refuerza la idea de que la implementación de \textit{Strassen} genera un mayor un uso en la memoria con la creación de las 18 submatrices temporales, muy diferente al uso de memoria de \textit{Naive}, que solo requiere memoria adicional para generar la matriz del resultado.
+
+

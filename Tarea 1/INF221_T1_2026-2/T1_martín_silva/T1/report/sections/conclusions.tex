@@ -1,0 +1,16 @@
+\begin{mdframed}
+    \textbf{La extensión máxima para esta sección es un párrafo breve (máximo 1/4 de página).}
+\end{mdframed}
+
+La experiencia permitió obtener conclusiones sobre a la complejidad teórica de los algoritmos respecto a su implementación práctica.
+
+En el caso del ordenamiento, los cuatro algoritmos evaluados comparten la misma complejidad teó-
+rica $\mathcal{O}(n \log n)$, a exepción de \textit{Patiencesort}, pero presentan diferencias significativas en tiempo de ejecución para entradas grandes.
+\textit{Sort} resulta ser el más eficiente en la práctica debido a las optimizaciones implementadas en la
+STL, seguido de \textit{Quicksort} con mediana de tres. \textit{Mergesort} y \textit{Patiencesort}, a pesar de tener complejidad
+asintótica similar, son los más lento para $n \leq 10^7$ por el overhead de memoria que introducen sus implementaciones.
+
+ En el caso de la multiplicación de matrices, \textit{Strassen} demuestra que una menor complejidad asintó-
+ tica no garantiza un mejor rendimiento práctico. Las constantes ocultas en la notación Big O afectan en el comportamiento de los algoritmos para los tamaños evaluados.
+ 
+ Todo esto considerando que las implementaciones no son las mejor optimizadas, estos resultados refuerzan la importancia del análisis experimental como complemento al análisis teórico.
